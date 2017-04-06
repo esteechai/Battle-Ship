@@ -154,12 +154,14 @@ public static class GameController
 		bool isHuman = false;
 		isHuman = object.ReferenceEquals(_theGame.Player, HumanPlayer);
 
+		//determines if current player is human or computer and the generate the message of the action performed.
 		if (isHuman) {
 			Message = "You " + result.ToString();
 		} else {
 			Message = "The AI " + result.ToString();
 		}
 
+		//determine what sound to play based on result value.
 		switch (result.Value) {
 			case ResultOfAttack.Destroyed:
 				PlayHitSequence(result.Row, result.Column, isHuman);
@@ -273,6 +275,7 @@ public static class GameController
 		//Read incoming input events
 		SwinGame.ProcessEvents();
 
+		//checks what the current gamestate of the game is and runs code to handle inpute for that gamestate.
 		switch (CurrentState) {
 			case GameState.ViewingMainMenu:
 				HandleMainMenuInput();

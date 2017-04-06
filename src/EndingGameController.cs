@@ -20,9 +20,11 @@ static class EndingGameController
 	/// </summary>
 	public static void DrawEndOfGame()
 	{
+		//shows the enemys ship positions.
 		DrawField(ComputerPlayer.PlayerGrid, ComputerPlayer, true);
 		DrawSmallField(HumanPlayer.PlayerGrid, HumanPlayer);
 
+		//makes a check to see if all of the humans ships are destroyed or not and displays the correct end title.
 		if (HumanPlayer.IsDestroyed) {
 			SwinGame.DrawTextLines("YOU LOSE!", Color.White, Color.Transparent, GameFont("ArialLarge"), FontAlignment.AlignCenter, 0, 250, SwinGame.ScreenWidth(), SwinGame.ScreenHeight());
 		} else {
@@ -32,7 +34,7 @@ static class EndingGameController
 
 	/// <summary>
 	/// Handle the input during the end of the game. Any interaction
-	/// will result in it reading in the highsSwinGame.
+	/// will result in it reading in the highscore.
 	/// </summary>
 	public static void HandleEndOfGameInput()
 	{

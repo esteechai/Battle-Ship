@@ -45,6 +45,9 @@ public static class GameResources
 
 	}
 
+	/// <summary>
+	/// links a sound file to a name to be able to be called.
+	/// </summary>
 	private static void LoadSounds()
 	{
 		NewSound("Error", "error.wav");
@@ -117,11 +120,11 @@ public static class GameResources
 	private static Font _LoadingFont;
 
 	private static SoundEffect _StartSound;
+
 	/// <summary>
 	/// The Resources Class stores all of the Games Media Resources, such as Images, Fonts
 	/// Sounds, Music.
 	/// </summary>
-
 	public static void LoadResources()
 	{
 		int width = 0;
@@ -156,6 +159,9 @@ public static class GameResources
 		EndLoadingScreen(width, height);
 	}
 
+	/// <summary>
+	/// Displays a loading screen consisting af a background, an animation, loading bar, and an audio file.
+	/// </summary>
 	private static void ShowLoadingScreen()
 	{
 		_Background = SwinGame.LoadBitmap(SwinGame.PathToResource("SplashBack.png", ResourceKind.BitmapResource));
@@ -173,6 +179,9 @@ public static class GameResources
 		PlaySwinGameIntro();
 	}
 
+	/// <summary>
+	/// plays the intro animation of swingame.
+	/// <summary>
 	private static void PlaySwinGameIntro()
 	{
 		const int ANI_X = 143;
@@ -197,7 +206,9 @@ public static class GameResources
 		SwinGame.Delay(1500);
 
 	}
-
+	/// <summary>
+	/// Shows a message on screen whileupdating the loding bar bitmap
+	/// <summary>
 	private static void ShowMessage(string message, int number)
 	{
 		const int TX = 310;
@@ -220,6 +231,9 @@ public static class GameResources
 		SwinGame.ProcessEvents();
 	}
 
+	/// <summary>
+	/// The endloadingscreen function clears and resizes the screen and clears all the pictures, fonts and audio from memory.
+	/// <summary>
 	private static void EndLoadingScreen(int width, int height)
 	{
 		SwinGame.ProcessEvents();
