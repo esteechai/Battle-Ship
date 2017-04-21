@@ -3,7 +3,7 @@ using Microsoft.VisualBasic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
+//using System.Data;
 using System.Diagnostics;
 using SwinGameSDK;
 
@@ -20,35 +20,26 @@ static class EndingGameController
 	/// </summary>
 	public static void DrawEndOfGame()
 	{
-		//shows the enemys ship positions.
-		DrawField(ComputerPlayer.PlayerGrid, ComputerPlayer, true);
-		DrawSmallField(HumanPlayer.PlayerGrid, HumanPlayer);
+		UtilityFunctions.DrawField(GameController.ComputerPlayer.PlayerGrid, GameController.ComputerPlayer, true);
+		UtilityFunctions.DrawSmallField(GameController.HumanPlayer.PlayerGrid, GameController.HumanPlayer);
 
-		//makes a check to see if all of the humans ships are destroyed or not and displays the correct end title.
-		if (HumanPlayer.IsDestroyed) {
-			SwinGame.DrawTextLines("YOU LOSE!", Color.White, Color.Transparent, GameFont("ArialLarge"), FontAlignment.AlignCenter, 0, 250, SwinGame.ScreenWidth(), SwinGame.ScreenHeight());
+		if (GameController.HumanPlayer.IsDestroyed) {
+			SwinGame.DrawTextLines("YOU LOSE!", Color.White, Color.Transparent, GameResources.GameFont("ArialLarge"), FontAlignment.AlignCenter, 0, 250, SwinGame.ScreenWidth(), SwinGame.ScreenHeight());
 		} else {
-			SwinGame.DrawTextLines("-- WINNER --", Color.White, Color.Transparent, GameFont("ArialLarge"), FontAlignment.AlignCenter, 0, 250, SwinGame.ScreenWidth(), SwinGame.ScreenHeight());
+			SwinGame.DrawTextLines("-- WINNER --", Color.White, Color.Transparent, GameResources.GameFont("ArialLarge"), FontAlignment.AlignCenter, 0, 250, SwinGame.ScreenWidth(), SwinGame.ScreenHeight());
 		}
 	}
 
 	/// <summary>
 	/// Handle the input during the end of the game. Any interaction
-	/// will result in it reading in the highscore.
+	/// will result in it reading in the highsSwinGame.
 	/// </summary>
 	public static void HandleEndOfGameInput()
 	{
-		if (SwinGame.MouseClicked(MouseButton.LeftButton) || SwinGame.KeyTyped(KeyCode.VK_RETURN) || SwinGame.KeyTyped(KeyCode.VK_ESCAPE)) {
-			ReadHighScore(HumanPlayer.Score);
-			EndCurrentState();
+		if (SwinGame.MouseClicked(MouseButton.LeftButton) || SwinGame.KeyTyped(KeyCode.vk_RETURN) || SwinGame.KeyTyped(KeyCode.vk_ESCAPE)) {
+			HighScoreController.ReadHighScore(GameController.HumanPlayer.Score);
+			GameController.EndCurrentState();
 		}
 	}
 
 }
-
-//=======================================================
-//Service provided by Telerik (www.telerik.com)
-//Conversion powered by NRefactory.
-//Twitter: @telerik
-//Facebook: facebook.com/telerik
-//=======================================================
