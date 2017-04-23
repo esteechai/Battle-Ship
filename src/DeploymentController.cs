@@ -106,7 +106,6 @@ static class DeploymentController
 		if (row >= 0 & row < GameController.HumanPlayer.PlayerGrid.Height) {
 			if (col >= 0 & col < GameController.HumanPlayer.PlayerGrid.Width) {
 				//if in the area try to deploy
-				Console.WriteLine("row: " + row + " col: " + col);
 				try {
 					GameController.HumanPlayer.PlayerGrid.MoveShip(row, col, _selectedShip, _currentDirection);
 				} catch (Exception ex) {
