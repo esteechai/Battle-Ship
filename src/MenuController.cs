@@ -66,11 +66,13 @@ static class MenuController
 
 	private const int MAIN_MENU_QUIT_BUTTON = 3;
 	private const int MAIN_MAIN_MENU_HELP_BUTTON = 4; 
+
 	private const int SETUP_MENU_EASY_BUTTON = 0;
 	private const int SETUP_MENU_MEDIUM_BUTTON = 1;
 	private const int SETUP_MENU_HARD_BUTTON = 2;
 
 	private const int SETUP_MENU_EXIT_BUTTON = 3;
+
 	private const int GAME_MENU_RETURN_BUTTON = 0;
 	private const int GAME_MENU_SURRENDER_BUTTON = 1;
 
@@ -302,6 +304,8 @@ static class MenuController
 			case MAIN_MENU_QUIT_BUTTON:
 				GameController.EndCurrentState();
 				break;
+		case MAIN_MENU_HELP_BUTTON:
+			GameController.AddNewState (GameState.ViewingHelp);
 		}
 	}
 
