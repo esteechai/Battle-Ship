@@ -27,7 +27,8 @@ static class MenuController
 			"PLAY",
 			"SETUP",
 			"SCORES",
-			"QUIT"
+			"QUIT",
+			"HELP"
 		},
 		new string[] {
 			"RETURN",
@@ -38,6 +39,11 @@ static class MenuController
 			"EASY",
 			"MEDIUM",
 			"HARD"
+		},
+
+		new string[]{
+			"PREPARE",
+			"BATTLE"
 		}
 
 	};
@@ -53,11 +59,13 @@ static class MenuController
 	private const int GAME_MENU = 1;
 
 	private const int SETUP_MENU = 2;
+	private const int HELP_MENU = 3;
 	private const int MAIN_MENU_PLAY_BUTTON = 0;
 	private const int MAIN_MENU_SETUP_BUTTON = 1;
 	private const int MAIN_MENU_TOP_SCORES_BUTTON = 2;
 
 	private const int MAIN_MENU_QUIT_BUTTON = 3;
+	private const int MAIN_MAIN_MENU_HELP_BUTTON = 4; 
 	private const int SETUP_MENU_EASY_BUTTON = 0;
 	private const int SETUP_MENU_MEDIUM_BUTTON = 1;
 	private const int SETUP_MENU_HARD_BUTTON = 2;
@@ -65,6 +73,8 @@ static class MenuController
 	private const int SETUP_MENU_EXIT_BUTTON = 3;
 	private const int GAME_MENU_RETURN_BUTTON = 0;
 	private const int GAME_MENU_SURRENDER_BUTTON = 1;
+
+	private const int MAIN_MENU_HELP_BUTTON = 4;  
 
 	private const int GAME_MENU_QUIT_BUTTON = 2;
 	private static readonly Color MENU_COLOR = SwinGame.RGBAColor(2, 167, 252, 255);
@@ -101,6 +111,24 @@ static class MenuController
 	{
 		HandleMenuInput(GAME_MENU, 0, 0);
 	}
+
+	/// <summary>
+	/// Handle input in the help menu.
+	public static void HandleHelpMenuInput()
+	{
+		bool handled = false;
+		handled = HandleMenuInput(HELP_MENU, 1, 8);
+
+		if (!handled) {
+			HandleMenuInput(MAIN_MENU, 0, 0);
+		}
+	}
+
+
+
+
+
+
 
 	/// <summary>
 	/// Handles input for the specified menu.
