@@ -33,6 +33,7 @@ static class MenuController
 			"RETURN",
 			"RESTART",
 			"SURRENDER",
+			"SCREEN",
 			"QUIT"
 		},
 		new string[] {
@@ -67,7 +68,8 @@ static class MenuController
 	private const int GAME_MENU_RETURN_BUTTON = 0;
 	private const int GAME_MENU_RESTART_BUTTON = 1;
 	private const int GAME_MENU_SURRENDER_BUTTON = 2;
-	private const int GAME_MENU_QUIT_BUTTON = 3;
+	private const int GAME_MENU_FULLSCREEN_BUTTON = 3;
+	private const int GAME_MENU_QUIT_BUTTON = 4;
 	private static readonly Color MENU_COLOR = SwinGame.RGBAColor(2, 167, 252, 255);
 
 	private static readonly Color HIGHLIGHT_COLOR = SwinGame.RGBAColor(1, 57, 86, 255);
@@ -318,6 +320,9 @@ static class MenuController
 				//end game menu
 				GameController.EndCurrentState();
 				//end game
+				break;
+			case GAME_MENU_FULLSCREEN_BUTTON:
+				SwinGame.ToggleFullScreen();
 				break;
 			case GAME_MENU_QUIT_BUTTON:
 				GameController.AddNewState(GameState.Quitting);
