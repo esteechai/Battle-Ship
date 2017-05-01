@@ -20,6 +20,9 @@ public static class GameResources
 
 	private static void LoadImages()
 	{
+		//help 
+		NewImage("HowToPlay", "howtoplay.png");
+
 		//Backgrounds
 		NewImage("Menu", "main_page.jpg");
 		NewImage("Discovery", "discover.jpg");
@@ -303,3 +306,4 @@ public static class GameResources
 		SwinGame.ProcessEvents();
 	}
 }
+
