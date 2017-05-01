@@ -27,7 +27,8 @@ static class MenuController
 			"PLAY",
 			"SETUP",
 			"SCORES",
-			"QUIT"
+			"QUIT",
+			"HELP"
 		},
 		new string[] {
 			"RETURN",
@@ -40,6 +41,11 @@ static class MenuController
 			"EASY",
 			"MEDIUM",
 			"HARD"
+		},
+
+		new string[]{
+			"PREPARE",
+			"BATTLE"
 		}
 
 	};
@@ -55,21 +61,29 @@ static class MenuController
 	private const int GAME_MENU = 1;
 
 	private const int SETUP_MENU = 2;
+	private const int HELP_MENU = 3;
 	private const int MAIN_MENU_PLAY_BUTTON = 0;
 	private const int MAIN_MENU_SETUP_BUTTON = 1;
 	private const int MAIN_MENU_TOP_SCORES_BUTTON = 2;
 
 	private const int MAIN_MENU_QUIT_BUTTON = 3;
+	private const int MAIN_MENU_HELP_BUTTON = 4; 
+
 	private const int SETUP_MENU_EASY_BUTTON = 0;
 	private const int SETUP_MENU_MEDIUM_BUTTON = 1;
 	private const int SETUP_MENU_HARD_BUTTON = 2;
 
 	private const int SETUP_MENU_EXIT_BUTTON = 3;
+
 	private const int GAME_MENU_RETURN_BUTTON = 0;
 	private const int GAME_MENU_RESTART_BUTTON = 1;
 	private const int GAME_MENU_SURRENDER_BUTTON = 2;
+
+
+	private const int GAME_MENU_QUIT_BUTTON = 3;
 	private const int GAME_MENU_FULLSCREEN_BUTTON = 3;
 	private const int GAME_MENU_QUIT_BUTTON = 4;
+
 	private static readonly Color MENU_COLOR = SwinGame.RGBAColor(2, 167, 252, 255);
 
 	private static readonly Color HIGHLIGHT_COLOR = SwinGame.RGBAColor(1, 57, 86, 255);
@@ -104,6 +118,24 @@ static class MenuController
 	{
 		HandleMenuInput(GAME_MENU, 0, 0);
 	}
+
+	/// <summary>
+	/// Handle input in the help menu.
+	public static void HandleHelpMenuInput()
+	{
+		bool handled = false;
+		handled = HandleMenuInput(HELP_MENU, 1, 4);
+
+		if (!handled) {
+			HandleMenuInput(MAIN_MENU, 0, 0);
+		}
+	}
+
+
+
+
+
+
 
 	/// <summary>
 	/// Handles input for the specified menu.
@@ -277,6 +309,8 @@ static class MenuController
 			case MAIN_MENU_QUIT_BUTTON:
 				GameController.EndCurrentState();
 				break;
+		case MAIN_MENU_HELP_BUTTON:
+			GameController.AddNewState (GameState.ViewingHelp);
 		}
 	}
 
@@ -312,8 +346,7 @@ static class MenuController
 				GameController.EndCurrentState();
 				break;
 			case GAME_MENU_RESTART_BUTTON:
-				GameController.EndCurrentState();
-				GameController.EndCurrentState();
+			GameController.EndCurrentState();
 				GameController.StartGame();
 				break;
 			case GAME_MENU_SURRENDER_BUTTON:
