@@ -28,6 +28,10 @@ public enum GameState
 	/// </summary>
 	ViewingHighScores,
 
+	/// help function by estee
+	ViewingHelp,
+
+
 	/// <summary>
 	/// The player is altering the game settings
 	/// </summary>

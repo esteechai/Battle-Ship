@@ -230,14 +230,18 @@ static class UtilityFunctions
 	public static void DrawBackground()
 	{
 		switch (GameController.CurrentState) {
-			case GameState.ViewingMainMenu:
-			case GameState.ViewingGameMenu:
-			case GameState.AlteringSettings:
-			case GameState.ViewingHighScores:
+		case GameState.ViewingMainMenu:
+		case GameState.ViewingGameMenu:
+		case GameState.AlteringSettings:
+		case GameState.ViewingHighScores:
+			
 				SwinGame.DrawBitmap(GameResources.GameImage("Menu"), 0, 0);
 				break;
-			case GameState.Discovering:
-			case GameState.EndingGame:
+		case GameState.ViewingHelp:
+		 	SwinGame.DrawBitmap (GameResources.GameImage ("howtoplay"), 0, 0);
+			break; 
+		case GameState.Discovering:
+		case GameState.EndingGame:
 				SwinGame.DrawBitmap(GameResources.GameImage("Discovery"), 0, 0);
 				break;
 			case GameState.Deploying:
