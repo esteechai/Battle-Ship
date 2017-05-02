@@ -360,6 +360,7 @@ static class MenuController
 			break;
 		case GAME_MENU_RESTART_BUTTON:
 			GameController.EndCurrentState ();
+			GameController.EndCurrentState ();
 			GameController.StartGame ();
 			break;
 		case GAME_MENU_SURRENDER_BUTTON:
