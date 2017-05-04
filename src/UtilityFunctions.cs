@@ -230,27 +230,25 @@ static class UtilityFunctions
 	public static void DrawBackground()
 	{
 		switch (GameController.CurrentState) {
-			case GameState.ViewingMainMenu:
-			case GameState.ViewingGameMenu:
-			case GameState.AlteringSettings:
-			case GameState.ViewingHighScores:
-				SwinGame.DrawBitmap(GameResources.GameImage("Menu"), 0, 0);
-				break;
-
+		case GameState.ViewingMainMenu:
+		case GameState.ViewingGameMenu:
+		case GameState.AlteringSettings:
+		case GameState.ViewingHighScores:
+			SwinGame.DrawBitmap(GameResources.GameImage("Menu"), 0, 0);
+			break;
 		case GameState.ViewingHelp:
-			SwinGame.DrawBitmap (GameResources.GameImage ("howtoplay"), 0, 0);
+		 	SwinGame.DrawBitmap (GameResources.GameImage ("howtoplay"), 0, 0);
 			break; 
-
-			case GameState.Discovering:
-			case GameState.EndingGame:
-				SwinGame.DrawBitmap(GameResources.GameImage("Discovery"), 0, 0);
-				break;
-			case GameState.Deploying:
-				SwinGame.DrawBitmap(GameResources.GameImage("Deploy"), 0, 0);
-				break;
-			default:
-				SwinGame.ClearScreen();
-				break;
+		case GameState.Discovering:
+		case GameState.EndingGame:
+			SwinGame.DrawBitmap(GameResources.GameImage("Discovery"), 0, 0);
+			break;
+		case GameState.Deploying:
+			SwinGame.DrawBitmap(GameResources.GameImage("Deploy"), 0, 0);
+			break;
+		default:
+			SwinGame.ClearScreen();
+			break;
 		}
 
 		SwinGame.DrawFramerate(675, 585, GameResources.GameFont("CourierSmall"));

@@ -34,6 +34,7 @@ static class MenuController
 			"RETURN",
 			"RESTART",
 			"SURRENDER",
+			"SCREEN",
 			"QUIT"
 		},
 		new string[] {
@@ -41,7 +42,6 @@ static class MenuController
 			"MEDIUM",
 			"HARD"
 		},
-
 		new string[]{
 			"PREPARE",
 			"BATTLE"
@@ -60,13 +60,14 @@ static class MenuController
 	private const int GAME_MENU = 1;
 
 	private const int SETUP_MENU = 2;
+
 	private const int HELP_MENU = 3;
 	private const int MAIN_MENU_PLAY_BUTTON = 0;
 	private const int MAIN_MENU_SETUP_BUTTON = 1;
 	private const int MAIN_MENU_TOP_SCORES_BUTTON = 2;
 
 	private const int MAIN_MENU_QUIT_BUTTON = 3;
-	private const int MAIN_MAIN_MENU_HELP_BUTTON = 4; 
+	private const int MAIN_MENU_HELP_BUTTON = 4; 
 
 	private const int SETUP_MENU_EASY_BUTTON = 0;
 	private const int SETUP_MENU_MEDIUM_BUTTON = 1;
@@ -77,7 +78,10 @@ static class MenuController
 	private const int GAME_MENU_RETURN_BUTTON = 0;
 	private const int GAME_MENU_RESTART_BUTTON = 1;
 	private const int GAME_MENU_SURRENDER_BUTTON = 2;
+
+
 	private const int GAME_MENU_QUIT_BUTTON = 3;
+	private const int GAME_MENU_FULLSCREEN_BUTTON = 3;
 
 	private static readonly Color MENU_COLOR = SwinGame.RGBAColor(2, 167, 252, 255);
 
@@ -119,18 +123,12 @@ static class MenuController
 	public static void HandleHelpMenuInput()
 	{
 		bool handled = false;
-		handled = HandleMenuInput(HELP_MENU, 1, 8);
+		handled = HandleMenuInput(HELP_MENU, 1, 4);
 
 		if (!handled) {
 			HandleMenuInput(MAIN_MENU, 0, 0);
 		}
 	}
-
-
-
-
-
-
 
 	/// <summary>
 	/// Handles input for the specified menu.
@@ -193,6 +191,7 @@ static class MenuController
 	/// <remarks>
 	/// Also shows the main menu
 	/// </remarks>
+	/// 
 	public static void DrawSettings()
 	{
 		//Clears the Screen to Black
@@ -201,6 +200,14 @@ static class MenuController
 		DrawButtons(MAIN_MENU);
 		DrawButtons(SETUP_MENU, 1, 1);
 	}
+
+
+	public static void DrawHelp()
+	{
+		DrawButtons (MAIN_MENU);
+		DrawButtons (HELP_MENU, 1,4);
+	}
+
 
 	/// <summary>
 	/// Draw the buttons associated with a top level menu.
@@ -282,6 +289,10 @@ static class MenuController
 			case GAME_MENU:
 				PerformGameMenuAction(button);
 				break;
+			// new added estee
+		case HELP_MENU:
+			PerformHelpMenuAction (button);
+			break;
 		}
 	}
 
@@ -304,8 +315,11 @@ static class MenuController
 			case MAIN_MENU_QUIT_BUTTON:
 				GameController.EndCurrentState();
 				break;
-		case MAIN_MENU_HELP_BUTTON:
-			GameController.AddNewState (GameState.ViewingHelp);
+			// Help Page by Estee
+			case MAIN_MENU_HELP_BUTTON:
+				GameController.AddNewState (GameState.ViewingHelp);
+				break;
+
 		}
 	}
 
@@ -337,22 +351,37 @@ static class MenuController
 	private static void PerformGameMenuAction(int button)
 	{
 		switch (button) {
-			case GAME_MENU_RETURN_BUTTON:
-				GameController.EndCurrentState();
-				break;
-			case GAME_MENU_RESTART_BUTTON:
-			GameController.EndCurrentState();
-				GameController.StartGame();
-				break;
-			case GAME_MENU_SURRENDER_BUTTON:
-				GameController.EndCurrentState();
+		case GAME_MENU_RETURN_BUTTON:
+			GameController.EndCurrentState ();
+			break;
+		case GAME_MENU_RESTART_BUTTON:
+			GameController.EndCurrentState ();
+			GameController.EndCurrentState ();
+			GameController.StartGame ();
+			break;
+		case GAME_MENU_SURRENDER_BUTTON:
+			GameController.EndCurrentState ();
 				//end game menu
-				GameController.EndCurrentState();
+			GameController.EndCurrentState ();
 				//end game
-				break;
-			case GAME_MENU_QUIT_BUTTON:
-				GameController.AddNewState(GameState.Quitting);
-				break;
+			break;
+		//case GAME_MENU_FULLSCREEN_BUTTON:
+		//	SwinGame.ToggleFullScreen ();
+		//	break;
+		case GAME_MENU_QUIT_BUTTON:
+			GameController.AddNewState (GameState.Quitting);
+			break;
 		}
 	}
+
+		public static void PerformHelpMenuAction(int button)
+		{
+		SwinGame.DrawBitmap(GameResources.GameImage("howtoplay") ,0,0);
+		GameResources.HelpMenu ();
+
+		}
+
 }
+
+
+

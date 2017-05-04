@@ -28,6 +28,9 @@ public static class GameResources
 		NewImage("Discovery", "discover.jpg");
 		NewImage("Deploy", "deploy.jpg");
 
+		//Help section
+		NewImage ("howtoplay", "howtoplay.png"); 
+
 		//Deployment
 		NewImage("LeftRightButton", "deploy_dir_button_horiz.png");
 		NewImage("UpDownButton", "deploy_dir_button_vert.png");
@@ -118,6 +121,8 @@ public static class GameResources
 	private static Bitmap _LoaderFull;
 	private static Bitmap _LoaderEmpty;
 	private static Font _LoadingFont;
+	private static Bitmap Help;
+
 
 	private static SoundEffect _StartSound;
 	/// <summary>
@@ -174,6 +179,16 @@ public static class GameResources
 		_LoaderEmpty = SwinGame.LoadBitmap(SwinGame.PathToResource("loader_empty.png", ResourceKind.BitmapResource));
 
 		PlaySwinGameIntro();
+	}
+
+	//Estee , New added
+	public static void HelpMenu()
+	{
+		 Help = SwinGame.LoadBitmap (SwinGame.PathToResource ("howtoplay.png", ResourceKind.BitmapResource));
+		SwinGame.DrawBitmap (Help , 0, 0);
+		SwinGame.RefreshScreen ();
+		SwinGame.Delay (3500);
+		SwinGame.ProcessEvents ();
 	}
 
 	private static void PlaySwinGameIntro()
