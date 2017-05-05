@@ -82,7 +82,7 @@ static class MenuController
 	private const int GAME_MENU_SURRENDER_BUTTON = 2;
 
 
-	private const int GAME_MENU_QUIT_BUTTON = 3;
+	private const int GAME_MENU_QUIT_BUTTON = 4;
 	private const int GAME_MENU_FULLSCREEN_BUTTON = 3;
 
 
@@ -369,9 +369,9 @@ static class MenuController
 			GameController.EndCurrentState ();
 				//end game
 			break;
-		//case GAME_MENU_FULLSCREEN_BUTTON:
-		//	SwinGame.ToggleFullScreen ();
-		//	break;
+		case GAME_MENU_FULLSCREEN_BUTTON:
+			SwinGame.ToggleFullScreen ();
+			break;
 		case GAME_MENU_QUIT_BUTTON:
 			GameController.AddNewState (GameState.Quitting);
 			break;
